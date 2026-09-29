@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+dist/
+.sites-runtime/
+.env*
+!.env.example
+*.log
+*.tar
+*.tar.gz
+.DS_Store

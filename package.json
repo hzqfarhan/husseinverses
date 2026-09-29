@@ -1,0 +1,22 @@
+{
+  "name": "husseinverse",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 4173",
+    "build": "next build",
+    "start": "node scripts/serve.mjs",
+    "check": "node --check lib/campus.js",
+    "test": "node --test lib/navigation.test.mjs"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "dependencies": {
+    "next": "16.3.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "three": "0.180.0"
+  }
+}
