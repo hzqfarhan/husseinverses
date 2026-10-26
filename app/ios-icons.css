@@ -1,0 +1,94 @@
+/* Original generated app artwork with quiet, iOS-inspired chrome. Utility
+   glyphs remain vector-sharp at their small control sizes. */
+:root { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","DM Sans",sans-serif; --ios-tint:#227e75; --ios-label:#203b44; --ios-secondary:#6c7e7c; --ios-separator:#466c6120; --ios-surface:#f4f8f2ed; }
+.brand-app-icon { overflow:hidden; width:48px; height:48px; background:#254e59; border-radius:14px; box-shadow:0 1px 2px #13313e20,inset 0 0 0 1px #ffffff2b; }
+.brand-app-icon img { display:block; width:128%; height:128%; max-width:none; margin:-14%; object-fit:contain; }
+.loading-app-icon { display:block; width:82px; height:82px; overflow:hidden; border-radius:24px; background:#254e59; box-shadow:0 10px 30px #244f5725; }
+.loading-app-icon img { display:block; width:128%; height:128%; max-width:none; margin:-14%; }
+.topbar .brand { padding:5px 16px 5px 5px; border-radius:20px; background:#f8fbf4eb; box-shadow:0 5px 20px #1d3a4210; -webkit-backdrop-filter:blur(22px) saturate(125%); backdrop-filter:blur(22px) saturate(125%); }
+.topbar .brand-type small { color:#628079; }
+#app .top-actions .icon-button { width:44px; height:44px; border-radius:14px; background:#f4f8f1ec; color:#365c5b; border-color:#ffffffb3; box-shadow:0 1px 3px #183c4710; }
+#app .icon-button .campus-icon { stroke-width:1.8; }
+#app #light-toggle { font-size:0; }
+#app #light-toggle::before { content:"";display:block;width:22px;height:22px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5'/%3E%3C/svg%3E") center/contain no-repeat; }
+#app #light-toggle[aria-label="Switch to daylight"]::before { -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z'/%3E%3C/svg%3E"); }
+#app .places-panel { background:#f7faf3ef; border-color:#ffffffab; box-shadow:0 12px 38px #203d4712; -webkit-backdrop-filter:blur(24px) saturate(120%); backdrop-filter:blur(24px) saturate(120%); }
+#app .places-panel h1 { letter-spacing:-1.05px; }
+#app .panel-intro { color:#6d827b; }
+#app .place-filters { gap:3px; padding:4px; margin:12px 0 11px; border-radius:12px; background:#dfe8debd; }
+#app .place-filters button { min-height:32px; padding:6px 3px; border:0; border-radius:9px; color:#71837a; font-weight:600; }
+#app .place-filters button[aria-pressed="true"] { background:#fbfdf6; color:#28796e; box-shadow:0 1px 4px #2443331a,0 0 0 .5px #ffffffcc; }
+#app .search-field { background:#e8eee5a8; border:0; border-radius:12px; color:#7f9588; box-shadow:inset 0 0 0 .5px #456a5410; }
+#app .search-field:focus-within { background:#fcfdf6; box-shadow:0 0 0 2px #72a99a50; }
+#app .place-search { padding:12px 0; }
+#app .place-row { min-height:49px; padding:9px 7px; border-radius:12px; }
+#app .place-row:hover { background:#e6efe2; }
+#app .place-row.selected { border-color:#9bbdab5c; background:#dceadd; }
+#app .place-number { width:33px; height:35px; border:0; border-radius:10px; background:linear-gradient(145deg,#f8fbef,#d6e4ce); color:#668b70; box-shadow:0 1px 2px #2849340d,inset 0 1px 0 #ffffffb3; }
+#app .place-row.selected .place-number { color:#fffdf3; background:linear-gradient(145deg,#3d8c7e,#2f665f); box-shadow:0 2px 5px #2d625723; }
+#app .tour-start { border-radius:13px; background:linear-gradient(145deg,#315d61,#254c52); box-shadow:0 3px 9px #21424a12,inset 0 1px 0 #ffffff16; }
+#app .tour-start:hover { background:linear-gradient(145deg,#38716e,#2c5d61); }
+#app .mode-switch { padding:5px; border-radius:18px; border-color:#ffffffb8; background:#f3f8efe8; box-shadow:0 5px 24px #203e4514; -webkit-backdrop-filter:blur(24px) saturate(130%); backdrop-filter:blur(24px) saturate(130%); }
+#app .mode-switch button { min-height:44px; padding:11px 18px; border-radius:13px; color:#6b857c; }
+#app .mode-switch button.active { color:#f5fbee; background:linear-gradient(145deg,#3a776f,#2b585c); box-shadow:0 2px 6px #214c4826,inset 0 1px 0 #ffffff24; }
+#app .mode-switch button.active .campus-icon { color:#dfecc9; }
+#app .controls-hint { background:#eef5e8a6; border-color:#ffffff3d; color:#56776c; }
+#app .view-tools { padding:5px; border-color:#ffffffad; background:#f5f9f0e8; box-shadow:0 4px 20px #254a4812; -webkit-backdrop-filter:blur(22px); backdrop-filter:blur(22px); }
+#app .view-tools .icon-button { width:37px; height:37px; border-radius:10px; color:#527c70; }
+#app .view-tools .icon-button:hover { background:#deebdc; }
+#app .place-card { border-radius:21px; border-color:#ffffffba; background:#f8faf3f2; box-shadow:0 12px 38px #203d4714; -webkit-backdrop-filter:blur(26px); backdrop-filter:blur(26px); }
+#app .place-card h2 { letter-spacing:-.7px; }
+#app .primary-button { min-height:42px; border-radius:12px; background:linear-gradient(145deg,#34776d,#2b575a); box-shadow:0 2px 6px #265c4d14; }
+#app .text-button { color:#347c6e; }
+#app .adventure-dock-body { background:#f6faf1ee; border-color:#ffffffc2; border-radius:20px; box-shadow:0 9px 30px #284a3e12; -webkit-backdrop-filter:blur(24px); backdrop-filter:blur(24px); }
+#app .adventure-level-chip,.adventure-player-level { background:linear-gradient(145deg,#4a9180,#315c56); box-shadow:0 2px 6px #295c491b,inset 0 1px 0 #ffffff35; color:#f0e8bb; border-radius:12px; }
+#app .adventure-next { background:#e1eddb; color:#3a7965; }
+#app .adventure-mobile-open { background:#f4f9edf2; border-color:#ffffffc7; border-radius:14px; box-shadow:0 4px 18px #294d3b14; }
+.adventure-mission-icon { background:linear-gradient(145deg,#f9fbee,#e4ecda); border-radius:12px; box-shadow:0 1px 2px #34513d0b,inset 0 1px 0 #ffffffbd; }
+.adventure-collection-medal { border-radius:22%; }
+.adventure-journal { -webkit-font-smoothing:antialiased; }
+.adventure-journal .adventure-tabs { gap:4px; margin:0 30px 12px; padding:4px; border:0; border-radius:13px; background:#e7ede1; }
+.adventure-journal .adventure-tabs button { flex:1; justify-content:center; min-height:38px; padding:8px 10px; border:0; border-radius:10px; }
+.adventure-journal .adventure-tabs button[aria-selected="true"] { color:#317365; background:#fbfdf5; box-shadow:0 1px 4px #28503b16; }
+.adventure-journal .adventure-mission { border-radius:16px; }
+#app .campus-radar { border-color:#ffffffbf; background:#f5faeee6; box-shadow:0 5px 22px #294c4822,0 0 0 1px #ffffff31 inset; }
+#app .plan2d-open { background:#f6faeff0; border-color:#ffffffb8; border-radius:14px; box-shadow:0 4px 18px #294d3b12; }
+@media (hover:hover) {
+  #app .icon-button:active,#app .primary-button:active,#app .tour-start:active,#app .mode-switch button:active { transform:scale(.97); }
+}
+@media (max-width:760px) {
+  .topbar .brand { gap:7px; padding:4px 10px 4px 4px; border-radius:16px; }
+  #app .brand-app-icon { width:38px; height:38px; border-radius:11px; }
+  #app .brand-type { font-size:17px; }
+  #app .brand-type small { font-size:6px; }
+  #app .top-actions { gap:5px; }
+  #app .top-actions .icon-button { width:42px; height:44px; border-radius:13px; }
+  #app .places-panel { padding:14px; border-radius:18px; }
+  #app .places-panel.collapsed { padding:13px 14px; }
+  #app .place-filters { margin:11px 0 9px; }
+  #app .place-filters button { min-height:36px; font-size:10px; }
+  #app .place-search { font-size:12px; }
+  #app .place-row { min-height:47px; padding:8px 5px; }
+  #app .mode-switch { padding:4px; }
+  #app .mode-switch button { gap:7px; min-height:43px; padding:10px 9px; border-radius:11px; }
+  #app .mode-switch button span { font-size:11px; }
+  #app .view-tools .icon-button { width:37px; height:38px; }
+  #app .view-tools .campus-icon { width:18px; height:18px; }
+  body.walking #app .view-tools { bottom:244px; }
+  #app .place-card { border-radius:18px; }
+  body.walking #app #place-card { border-radius:14px; }
+  body.walking #app .place-card .primary-button { min-height:35px; }
+  .adventure-journal .adventure-tabs { margin:0 20px 10px; }
+  .adventure-journal .adventure-tabs button { min-height:42px; font-size:11px; }
+  .adventure-mission li>button { min-height:28px; }
+  .adventure-close { min-width:38px; min-height:38px; }
+  .loading-app-icon { width:72px;height:72px;border-radius:21px; }
+}
+@media (max-width:359px) {
+  #app .brand-type { font-size:15px; }
+  #app .brand-type small { font-size:5.6px; }
+  #app .top-actions .icon-button { width:38px; }
+  .topbar .brand { padding-right:8px;gap:6px; }
+  #app .view-tools .icon-button { width:34px; }
+}
+@media (prefers-reduced-motion:reduce) { #app button { transition:none; } }

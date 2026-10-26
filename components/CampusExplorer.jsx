@@ -64,6 +64,7 @@ export default function CampusExplorer() {
       ></div>
       <div id="world-labels" aria-label="Campus landmarks"></div>
       <div id="loading">
+        <span className="loading-app-icon" aria-hidden="true"><img src="/assets/icons/campus-ios-icon.png" alt="" width="128" height="128" /></span>
         <span className="loader"></span>
         <strong>A little closer to campus.</strong>
         <span>Preparing Parit Raja…</span>
@@ -74,16 +75,14 @@ export default function CampusExplorer() {
           id="home"
           aria-label="Return to campus overview"
         >
-          <span className="brand-symbol">
-            u<span>°</span>
-          </span>
+          <span className="brand-symbol brand-app-icon" aria-hidden="true"><img src="/assets/icons/campus-ios-icon.png" alt="" width="56" height="56" /></span>
           <span className="brand-type">
             <b>husseinverse</b>
             <small>UTHM · PARIT RAJA, JOHOR</small>
           </span>
         </button>
         <div className="top-actions">
-          <span className="project-tag"><i /> A LITTLE ADVENTURE, EVERY DAY</span>
+          <span className="project-tag"><i /> CAMPUS ADVENTURE</span>
           <button
             className="icon-button"
             id="light-toggle"
@@ -116,8 +115,8 @@ export default function CampusExplorer() {
           </button>
         </div>
         <p className="panel-intro">
-          A new place. A familiar face.
-          <br /> Find your own way around UTHM.
+          Six faculties. A campus to discover.
+          <br /> Find a place, take a walk, make it yours.
         </p>
         <div className="places-heading">
           <h2>Places to discover</h2>
@@ -231,7 +230,7 @@ export default function CampusExplorer() {
       </div>
       <div className="world-caption">
         <span>PARIT RAJA</span>
-        <span>A little closer to campus.</span>
+        <span>Animated campus shuttles</span>
       </div>
       <div id="walk-controls" hidden aria-label="Walking controls">
         <button data-dir="w" aria-label="Walk forward">
@@ -349,6 +348,8 @@ export default function CampusExplorer() {
           </span>
           <b>Missions & badges</b>
           <span>Open Quests or your adventure journal. Track a mission, find its destinations and collect badges as you explore.</span>
+          <b>Campus life</b>
+          <span>Shuttles and stadium players are animated scenes. At a bus stop, choose Live bus map to check real shuttle tracking on Katsana.</span>
         </div>
         <div className="about-note">
           <b>A campus, still growing.</b>
