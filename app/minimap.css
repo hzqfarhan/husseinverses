@@ -1,0 +1,25 @@
+.campus-radar { position:absolute; z-index:8; top:92px; right:24px; display:block; width:150px; height:150px; padding:5px; border:1px solid #ffffffda; border-radius:50%; background:#fffdf3e8; box-shadow:0 5px 22px #173e4922,0 1px 2px #ffffff80 inset; color:#365b5e; transition:box-shadow .18s,transform .18s; }
+.campus-radar:hover { box-shadow:0 7px 26px #173e4930,0 0 0 3px #fffdf34d; transform:translateY(-1px); }
+.campus-radar-face { display:block; width:100%; height:100%; border-radius:50%; overflow:hidden; background:#d9e1cf; }
+.campus-radar canvas { display:block; width:100%; height:100%; border-radius:50%; }
+.campus-radar-caption { position:absolute; left:50%; bottom:-5px; display:flex; align-items:center; gap:5px; padding:4px 8px; border:1px solid #ffffffb8; border-radius:7px; background:#fffdf5f2; box-shadow:0 2px 6px #24494b0c; transform:translateX(-50%); font-size:8px; font-weight:700; letter-spacing:1.4px; white-space:nowrap; }
+.campus-radar-caption i { width:4px; height:4px; border-radius:50%; background:#628e7d; }
+.campus-radar-caption>span { color:#8ca08b; font-size:10px; letter-spacing:0; }
+#app .compass { display:none; }
+#app .plan2d-open { top:260px; right:24px; }
+#app:has(#panorama:not([hidden])) .campus-radar,
+#app:has(.adventure-overlay) .campus-radar,
+#app:has(.plan2d-overlay) .campus-radar { visibility:hidden; }
+@media(max-width:760px) {
+  .campus-radar { top:calc(max(12px,env(safe-area-inset-top)) + 124px); right:12px; width:112px; height:112px; padding:4px; }
+  .campus-radar-caption { padding:3px 6px; bottom:-4px; font-size:7px; gap:4px; border-radius:6px; }
+  #app .plan2d-open { top:calc(max(12px,env(safe-area-inset-top)) + 252px); right:12px; }
+  #app:has(.places-panel:not(.collapsed)) .campus-radar { visibility:hidden; }
+  .walking #app .campus-radar { top:calc(max(12px,env(safe-area-inset-top)) + 64px); }
+  .walking #app .plan2d-open { top:calc(max(12px,env(safe-area-inset-top)) + 190px); }
+  .walking #app:has(.places-panel:not(.collapsed)) .campus-radar { visibility:visible; }
+  .walking #app:has(#panorama:not([hidden])) .campus-radar,
+  .walking #app:has(.adventure-overlay) .campus-radar,
+  .walking #app:has(.plan2d-overlay) .campus-radar { visibility:hidden; }
+}
+@media(prefers-reduced-motion:reduce) { .campus-radar { transition:none; } }

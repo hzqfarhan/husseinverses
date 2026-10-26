@@ -3,8 +3,38 @@
 import { useEffect } from "react";
 import { BUS_STOPS } from "../lib/bus-stops.js";
 import CampusPlan2D from "./CampusPlan2D";
+import CampusMissions from "./CampusMissions";
+import CampusMinimap from "./CampusMinimap";
+import CampusJoystick from "./CampusJoystick";
+
+function CampusIcon({ name, className = "", ...props }) {
+  const paths = {
+    map: <><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Z"/><path d="M9 3v15M15 6v15"/></>,
+    walk: <><circle cx="13" cy="4" r="2"/><path d="m7 12 3-4 4 1 3 4h3M10 8l-1 8-4 5M10 13l5 3 1 5"/></>,
+    rotate: <><path d="M20 8a8 8 0 1 0 0 8"/><path d="M20 3v5h-5"/></>,
+    layers: <><path d="m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5"/></>,
+    home: <><path d="m3 11 9-8 9 8M5 10v11h14V10M9 21v-7h6v7"/></>,
+    search: <><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></>,
+    arrow: <><path d="M5 12h14m-6-6 6 6-6 6"/></>,
+    close: <path d="m6 6 12 12M6 18 18 6"/>,
+    plus: <path d="M12 5v14M5 12h14"/>,
+    minus: <path d="M5 12h14"/>,
+    help: <><circle cx="12" cy="12" r="9"/><path d="M9.5 8a2.7 2.7 0 0 1 5.2 1c0 2-2.7 2.1-2.7 4M12 17h.01"/></>,
+  };
+  return <svg className={`campus-icon ${className}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name]}</svg>;
+}
 
 export default function CampusExplorer() {
+  useEffect(() => {
+    const app = document.getElementById("app");
+    const dock = app?.querySelector(".adventure-dock");
+    if (!app || !dock) return;
+    const measure = () => app.style.setProperty("--adventure-dock-height", `${Math.ceil(dock.getBoundingClientRect().height)}px`);
+    measure();
+    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(measure);
+    observer?.observe(dock);
+    return () => { observer?.disconnect(); app.style.removeProperty("--adventure-dock-height"); };
+  }, []);
   useEffect(() => {
     let cancelled = false;
     let dispose;
@@ -53,7 +83,7 @@ export default function CampusExplorer() {
           </span>
         </button>
         <div className="top-actions">
-          <span className="project-tag">CAMPUS EXPLORER</span>
+          <span className="project-tag"><i /> A LITTLE ADVENTURE, EVERY DAY</span>
           <button
             className="icon-button"
             id="light-toggle"
@@ -67,15 +97,15 @@ export default function CampusExplorer() {
             id="help"
             aria-label="About this tour"
           >
-            ?
+            <CampusIcon name="help" />
           </button>
         </div>
       </header>
       <aside className="places-panel" id="places-panel">
         <div className="panel-heading">
           <div>
-            <span className="eyebrow">UNIVERSITI TUN HUSSEIN ONN MALAYSIA</span>
-            <h1>Explore Parit Raja.</h1>
+            <span className="eyebrow">YOUR CAMPUS ADVENTURE</span>
+            <h1>Explore Parit Raja<span className="heading-dot">.</span></h1>
           </div>
           <button
             id="collapse-places"
@@ -86,10 +116,11 @@ export default function CampusExplorer() {
           </button>
         </div>
         <p className="panel-intro">
-          Explore six faculties, campus landmarks and the shuttle stops along the way.
+          A new place. A familiar face.
+          <br /> Find your own way around UTHM.
         </p>
         <div className="places-heading">
-          <h2>Explore the campus</h2>
+          <h2>Places to discover</h2>
           <span id="visit-count">{`0 / ${12 + BUS_STOPS.length}`}</span>
         </div>
         <div className="place-filters" role="group" aria-label="Filter campus places">
@@ -98,12 +129,15 @@ export default function CampusExplorer() {
           <button data-place-filter="landmarks" aria-pressed="false">Landmarks</button>
           <button data-place-filter="bus-stops" aria-pressed="false">Bus stops</button>
         </div>
-        <input id="place-search" className="place-search" type="search" placeholder="Find a faculty or place…" aria-label="Find a faculty or place" />
+        <label className="search-field" htmlFor="place-search">
+          <CampusIcon name="search" />
+          <input id="place-search" className="place-search" type="search" placeholder="Find your next stop…" aria-label="Find a faculty or place" />
+        </label>
         <nav id="places" aria-label="Choose a campus landmark"></nav>
         <p id="places-empty" hidden>No matching places. Try another name.</p>
         <button className="tour-start" id="tour-start">
-          <span>Take the campus tour</span>
-          <span aria-hidden="true">↗</span>
+          <span>Take the campus tour <small>Real places, in 360°</small></span>
+          <CampusIcon name="arrow" />
         </button>
         <div className="panel-foot">
           <span className="status-dot"></span>
@@ -124,7 +158,7 @@ export default function CampusExplorer() {
             className="icon-button"
             aria-label="Close landmark details"
           >
-            ×
+            <CampusIcon name="close" />
           </button>
         </div>
         <h2 id="place-name"></h2>
@@ -148,10 +182,10 @@ export default function CampusExplorer() {
       </section>
       <div className="view-tools" aria-label="Camera controls">
         <button id="zoom-in" className="icon-button" aria-label="Zoom in">
-          +
+          <CampusIcon name="plus" />
         </button>
         <button id="zoom-out" className="icon-button" aria-label="Zoom out">
-          −
+          <CampusIcon name="minus" />
         </button>
         <span></span>
         <button
@@ -159,7 +193,7 @@ export default function CampusExplorer() {
           className="icon-button"
           aria-label="Rotate camera"
         >
-          ⟳
+          <CampusIcon name="rotate" />
         </button>
         <button
           id="plan-view"
@@ -167,14 +201,14 @@ export default function CampusExplorer() {
           aria-label="View building footprints from above"
           title="View from above"
         >
-          ▱
+          <CampusIcon name="layers" />
         </button>
         <button
           id="reset-view"
           className="icon-button"
           aria-label="Campus overview"
         >
-          ⌂
+          <CampusIcon name="home" />
         </button>
       </div>
       <div className="compass" aria-hidden="true">
@@ -184,10 +218,10 @@ export default function CampusExplorer() {
       <div className="bottom-bar">
         <div className="mode-switch" role="group" aria-label="Exploration mode">
           <button id="overview-mode" className="active" aria-pressed="true">
-            ◈ <span>Campus view</span>
+            <CampusIcon name="map" /> <span>Campus view</span>
           </button>
           <button id="walk-mode" aria-pressed="false">
-            ♙ <span>Go for a walk</span>
+            <CampusIcon name="walk" /> <span>Go for a walk</span>
           </button>
         </div>
         <span className="controls-hint" id="controls-hint">
@@ -197,7 +231,7 @@ export default function CampusExplorer() {
       </div>
       <div className="world-caption">
         <span>PARIT RAJA</span>
-        <span>Concept 3D · real 360° views</span>
+        <span>A little closer to campus.</span>
       </div>
       <div id="walk-controls" hidden aria-label="Walking controls">
         <button data-dir="w" aria-label="Walk forward">
@@ -273,6 +307,9 @@ export default function CampusExplorer() {
           <small>If the view doesn’t appear, choose “Open full view”.</small>
         </div>
       </section>
+      <CampusJoystick />
+      <CampusMissions />
+      <CampusMinimap />
       <CampusPlan2D busStops={BUS_STOPS} />
       <dialog id="about-dialog">
         <button
@@ -280,7 +317,7 @@ export default function CampusExplorer() {
           className="icon-button"
           aria-label="Close about"
         >
-          ×
+          <CampusIcon name="close" />
         </button>
         <span className="eyebrow">SELAMAT DATANG</span>
         <h2>
@@ -297,8 +334,8 @@ export default function CampusExplorer() {
           <span>Drag the campus. Scroll or use + / − to zoom.</span>
           <b>Take a walk</b>
           <span>
-            Choose Go for a walk. Use WASD / arrow keys, or the on-screen
-            arrows. Hold Shift to move faster.
+            Choose Go for a walk. Use the thumbstick on mobile or iPad, or
+            WASD / arrow keys on a keyboard. Hold Shift to move faster.
           </span>
           <b>See the real place</b>
           <span>
@@ -310,9 +347,11 @@ export default function CampusExplorer() {
             Press V to switch view. Press Esc to close a place or return from
             360°.
           </span>
+          <b>Missions & badges</b>
+          <span>Open Quests or your adventure journal. Track a mission, find its destinations and collect badges as you explore.</span>
         </div>
         <div className="about-note">
-          <b>A first campus prototype</b>
+          <b>A campus, still growing.</b>
           <p>
             The 3D buildings and distances are simplified interpretations, not a
             surveyed digital twin. The 360° scenes are real campus photography

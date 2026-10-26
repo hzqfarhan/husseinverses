@@ -1,10 +1,13 @@
 import "./globals.css";
 import "./campus-plan.css";
+import "./game.css";
+import "./joystick.css";
+import "./minimap.css";
 
 export const metadata = {
   title: "Husseinverse · Explore UTHM Parit Raja",
   description:
-    "Walk around an interactive UTHM campus and explore authentic 360-degree views of Parit Raja.",
+    "Explore UTHM Parit Raja, take on campus missions, collect badges and discover authentic 360-degree views.",
   icons: { icon: "/icon.svg" },
 };
 export const viewport = {

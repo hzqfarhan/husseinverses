@@ -5,6 +5,7 @@ import { BUILDING_FOOTPRINTS, CAMPUS_LANDMARKS, CAMPUS_PONDS, CAMPUS_ROADS, MAP_
 import { FACULTIES, facultyForFootprint } from "../lib/faculty-data.js";
 import { getLandmarkPlanShapes } from "../lib/site-layout.js";
 import { getPondOutline } from "../lib/water-boundaries.js";
+import { CAMPUS_OUTLINE_PIXELS } from "../lib/campus-boundary.js";
 
 const STORAGE_KEY = "husseinverse-campus-fixes-v1";
 const EMPTY_STOPS = [];
@@ -37,11 +38,16 @@ function noteLayout(ctx, text) {
 function drawMap(ctx, view, width, height, busStops, items, draft = null, selected = null, uiScale = 1, trees = []) {
   const { scale, x, y } = view;
   ctx.clearRect(0, 0, width, height);
-  ctx.fillStyle = "#edf1e8"; ctx.fillRect(0, 0, width, height);
+  ctx.fillStyle = "#e1edf0"; ctx.fillRect(0, 0, width, height);
   ctx.save(); ctx.translate(x, y); ctx.scale(scale, scale);
+  path(ctx,CAMPUS_OUTLINE_PIXELS);ctx.fillStyle="#edf1e4";
+  ctx.shadowColor="#456b7130";ctx.shadowBlur=14/scale;ctx.shadowOffsetY=5/scale;ctx.fill();
+  ctx.shadowBlur=0;ctx.shadowOffsetY=0;ctx.strokeStyle="#99b1a0";ctx.lineWidth=1.2/scale;ctx.stroke();
+  ctx.save();ctx.clip();
   ctx.strokeStyle = "#e0e6d9"; ctx.lineWidth = .7 / scale;
   for (let gx = 0; gx < 2600; gx += 100) { ctx.beginPath(); ctx.moveTo(gx, 200); ctx.lineTo(gx, 1900); ctx.stroke(); }
   for (let gy = 200; gy < 1900; gy += 100) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(2600, gy); ctx.stroke(); }
+  ctx.restore();
   for (const road of CAMPUS_ROADS) {
     ctx.beginPath(); road.pixels.forEach(([px, py], i) => i ? ctx.lineTo(px, py) : ctx.moveTo(px, py));
     ctx.lineCap = "round"; ctx.lineJoin = "round";

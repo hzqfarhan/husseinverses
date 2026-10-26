@@ -57,7 +57,7 @@ FSKTM's photographic tour reference is UTHM's second campus aerial panorama, `35
 
 The detailed models are connected to the live explorer: PTTA has an open annular courtyard, the mosque has smooth domes and minaret balconies, DSI has modeled glazed elevations and roof details, and the sports buildings have structural, seating and equipment detail. FSKTM has 205,526 triangles with rounded edges, recessed glazing, roof ribs, gutters, solar arrays and entrance detail.
 
-Repeated mapped-campus details use instanced geometry; landmark details are merged by material. The complete campus, including the shared shelter model instances, renders roughly 4.35 million triangles while keeping the number of render objects bounded. Faculty identities J (FPTP), K (FPTV), M (FKAAB), P (FSKTM), QA/QB (FKEE), G1 (FKEE labs) and G2 (FKMP labs) were read from the official map legend. These are exterior interpretations rather than fully surveyed replicas. The five added faculty stops use the shared campus aerial panorama, clearly labeled as an aerial view.
+Repeated mapped-campus details use instanced geometry; landmark details are merged by material. The complete campus, including the shared shelter model instances, renders roughly 4.50 million triangles while keeping the number of render objects bounded. Faculty identities J (FPTP), K (FPTV), M (FKAAB), P (FSKTM), QA/QB (FKEE), G1 (FKEE labs) and G2 (FKMP labs) were read from the official map legend. These are exterior interpretations rather than fully surveyed replicas. The five added faculty stops use the shared campus aerial panorama, clearly labeled as an aerial view.
 
 Run `npm test` for geometry, FSKTM floor-count, courtyard and arrival-boundary checks. `npm run build` validates the static export.
 
@@ -75,20 +75,46 @@ Use **2D map · Mark fixes** to annotate the plan, add text notes and export a P
 
 The placement audit checks projected vertices of the actual detailed geometry against neighboring footprints and water. It identified and corrected the oversized mosque and misaligned swimming centre; the hall, library and stadium retain their checked placement. The mosque crescent was fitted separately from its main hall, and four generic trace fragments already represented by the detailed mosque/FSKTM were linked to their landmark models to prevent duplicate buildings. FSKTM retains its approved seven-floor tower and three-floor wings.
 
-Planting follows deliberate avenue rows and small groves rather than random scatter. The complete canopy clears building roofs, courtyards, entrance corridors, sports grounds, ponds, bus shelters and road furniture. The current composition contains 238 trees, including 166 pink flowering trees, 9,628 individual fallen petals and 192 gently drifting petals. These are design placements, not a surveyed tree inventory. Foliage and blossom albedo textures were generated as original project assets; the built-in generation prompts are saved in `public/assets/textures/prompts.json`.
+Planting follows deliberate avenue rows and small groves rather than random scatter. The complete canopy clears building roofs, courtyards, entrance corridors, sports grounds, ponds, bus shelters and road furniture. The current composition contains 202 trees, including 153 pink flowering trees, 8,874 individual fallen petals and 192 gently drifting petals. Crowns use asymmetric branch-led lobes, broken leaf edges and subtle individual wind motion; original bitmap detail preserves the modeled warm and cool leaf variation. These are design placements, not a surveyed tree inventory. Foliage and blossom albedo textures were generated as original project assets; the built-in generation prompts are saved in `public/assets/textures/prompts.json`.
 
 All ten pond outlines use the same rounded, gently undulating rings for the water, banks, lawn cutouts, collision boundaries and 2D plan. They retain more than 99% of the original traced area while removing hard corners. Curbs stop at junctions and entrances; lamps avoid shelters, buildings, water and each other. The 2D plan now draws the detailed landmark envelopes and the same planted tree coordinates, with a Trees toggle.
 
-The production export and geometry/placement checks pass. The latest landscape revision was checked using the generated placement plan and automated model tests; interactive browser control was disabled during the final visual pass.
+The production export and all 68 geometry, gameplay and placement checks pass. The latest revision was checked using a generated placement plan and automated model tests. Google Maps satellite inspection and live visual QA remain unverified: browser tools still report disabled, and desktop inspection stopped when the current Chrome URL could not be verified.
+
+The campus now uses a shared irregular cutout with a southwestern recess and softened outer corners in both 3D and the 2D correction map. Its lawn, layered side wall, planting limit and walking limit follow the same outline. All source-map buildings, roads, ponds, landmark envelopes and stops fit inside it. The cutout is an illustrated presentation boundary, not a surveyed property boundary.
+
+Road corrections separate the arrival carriageways around the median, place the F2 access on its eastern side, take the academic road around QA/QB, and follow the residential access bends. The false road through the lower administration blocks was removed; the actual eastern approach remains. Stadium grandstands were narrowed to their source-map envelope so the western access road can retain its traced alignment. The full paved widths now clear traced building bodies, detailed landmark roof envelopes and the final wavy pond outlines. Curbs, lamps, planting and bus positions follow the revised road data. Bus-stop side proposals are kept separate from official Katsana records until the affected stop is identified.
+
+All twelve mapped faculty components now use reference-informed architecture: purple screened FPTP wings and tower, blue FPTV panels, pale olive and white FKAAB elevations, yellow FKEE bays, and red pitched G1/G2 workshop roofs around open courts. QA has seven floor rows following the explicit UTHM count. FPTP/FKAAB towers are fitted wholly inside their traced footprints; other dimensions and concealed elevations remain exterior estimates. Shared materials keep their repeated facade and roof detail batched.
+
+## Campus adventure and touch controls
+
+The explorer now has an original articulated student character with a varsity jacket, campus card, backpack, facial detail, attached trainers and smooth walking, running and idle animation. The compact navigation cards, controls and adventure journal share the campus palette. Phone and iPad walking use a proportional thumbstick; a second thumb can turn the camera on the scene. Releasing the stick, changing view, opening a dialog or leaving the app stops movement.
+
+Six missions cover a first walk, all six faculties, campus icons, three different shuttle shelters, two real panorama openings and an evening sports walk. Completing missions unlocks six original in-game badges and earns XP. Walking time advances only while the character changes position; selecting places in overview earns no arrival credit. Progress is saved on the current browser using `husseinverse-adventure-v1`, separately from older tour visits and map annotations. The journal includes objective guidance, destination markers, keyboard focus handling and a confirmed progress reset.
+
+The circular map at the top right uses the same campus outline, roads, buildings and curved ponds as the scene. In walking mode it follows the student, rotates with the camera and shows the current mission destination. Clicking it opens the full 2D correction map. Its cached drawing avoids rebuilding campus geometry every frame. The map does not assert a surveyed north bearing.
+
+Wide views now ease exposure and specular highlights rather than washing the campus in pale glare. Haze starts behind the campus as the camera moves farther away, and distant water ripples fade below pixel size. A physical plaque reading **developed by seladevs.my** is fitted to the thick southern ground wall.
+
+The production build and 68 checks pass. The page, mission interface, touch controls and minimap are present in the local preview at `http://127.0.0.1:4173/`. Live browser interaction remains unverified because browser access reports disabled; the character was also checked in generated front/back geometry previews.
 
 ## Project structure
 
 - `app/`: Next.js App Router page, metadata and global styles.
 - `components/CampusPlan2D.jsx`: campus annotation canvas and local mark saving.
+- `components/CampusMissions.jsx` and `lib/game-progress.js`: adventure journal, tasks, saved progress and badges.
+- `components/CampusJoystick.jsx`: proportional touch movement for phones and tablets.
+- `components/CampusMinimap.jsx`: circular cached map, player heading and mission destination.
+- `lib/models/character.js`: articulated student model and animation.
+- `lib/view-lighting.js`: distance-aware lighting, haze and highlight control.
+- `lib/ground-credit.js`: the development credit attached to the ground wall.
 - `lib/site-layout.js`: shared detailed-model footprints and clearances.
 - `lib/planting.js`: deliberate tree placement, pink blossoms and petal effects.
 - `lib/water-boundaries.js`: rounded, gently wavy pond outlines.
 - `lib/road-layout.js`: junction-aware curbs and lamp clearances.
+- `lib/campus-boundary.js`: shared softened campus cutout and land limits.
+- `lib/placement-audit.js`: full-width road checks against buildings and natural water outlines.
 - `lib/environment-materials.js`: original terrain and animated pond shaders.
 - `lib/bus-stops.js`: sourced Katsana markers and approximate road placements.
 - `lib/models/bus-stop.js` and `lib/campus-transit.js`: shared shelter geometry and campus placement.
@@ -96,6 +122,7 @@ The production export and geometry/placement checks pass. The latest landscape r
 - `lib/campus.js`: Three.js scene, landmark data, controls, tour state and navigation tools.
 - `lib/faculty-data.js`: map-linked faculty identities, architecture palettes and navigation positions.
 - `lib/models/landmarks.js`: detailed library, mosque, hall, pool and stadium geometry.
+- `lib/models/faculties.js`: distinct faculty facades, towers, pitched courtyard roofs and roof services.
 - `lib/models/fsktm.js`: original FSKTM exterior reconstructed from the supplied plans and photographs.
 - `lib/campus-layout.js`: source-map coordinates, footprint traces, roads, ponds and landmark placements.
 - `lib/mapped-campus.js`: rendering of the traced campus surroundings.

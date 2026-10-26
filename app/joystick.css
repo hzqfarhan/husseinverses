@@ -1,0 +1,30 @@
+.campus-joystick { display:none; }
+.campus-joystick-pad { --stick-x:0px; --stick-y:0px; position:relative; display:block; width:116px; height:116px; padding:0; border:1px solid #ffffffd4; border-radius:50%; background:radial-gradient(circle at 50% 45%,#f6faed92 0 34%,#fffdf670 35% 53%,#dce9d86b 54% 68%,#fffdf6a6 69%); color:#3e7068; box-shadow:inset 0 1px 2px #ffffffc9,0 5px 24px #21463c15; backdrop-filter:blur(9px); -webkit-backdrop-filter:blur(9px); touch-action:none; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; cursor:grab; }
+.campus-joystick-pad:focus-visible { outline:3px solid #e7b55f; outline-offset:5px; }
+.campus-joystick-pad[data-active="true"] { cursor:grabbing; border-color:#d6e8ce; box-shadow:inset 0 1px 2px #ffffffc9,0 0 0 4px #e8f1d731,0 7px 26px #21463c1c; }
+.campus-joystick-thumb { position:absolute; left:50%; top:50%; display:flex; align-items:center; justify-content:center; gap:3px; width:44px; height:44px; margin:-22px 0 0 -22px; border:1px solid #fffefa; border-radius:50%; background:linear-gradient(145deg,#fffef8 8%,#e8eee0 95%); box-shadow:0 3px 7px #24453523,inset 0 2px 1px #ffffff; transform:translate(var(--stick-x),var(--stick-y)); transition:transform .15s cubic-bezier(.2,.9,.3,1),box-shadow .15s; pointer-events:none; }
+.campus-joystick-pad[data-active="true"] .campus-joystick-thumb { transition:none; box-shadow:0 4px 10px #24453529,inset 0 2px 1px #ffffff; }
+.campus-joystick-thumb i { width:2px; height:9px; border-radius:2px; background:#92aa8b87; box-shadow:1px 0 0 #ffffffa8; }
+.joystick-cross { position:absolute; left:50%; top:50%; background:#96b09333; pointer-events:none; }
+.joystick-cross-horizontal { width:58px; height:1px; margin-left:-29px; }
+.joystick-cross-vertical { width:1px; height:58px; margin-top:-29px; }
+.joystick-tick { position:absolute; width:3px; height:3px; border-radius:50%; background:#81a17b80; pointer-events:none; }
+.joystick-tick-north { left:calc(50% - 1px); top:11px; }
+.joystick-tick-east { right:11px; top:calc(50% - 1px); }
+.joystick-tick-south { left:calc(50% - 1px); bottom:11px; }
+.joystick-tick-west { left:11px; top:calc(50% - 1px); }
+.campus-joystick-caption { display:block; margin-top:9px; color:#4f7565; text-shadow:0 1px 5px #ffffffc9; font-size:8px; font-weight:700; line-height:1.3; letter-spacing:2.4px; text-align:center; pointer-events:none; }
+@media(any-pointer:coarse),(max-width:1100px) {
+  body.walking #app .campus-joystick { position:absolute; z-index:7; left:max(16px,env(safe-area-inset-left)); bottom:calc(max(110px,env(safe-area-inset-bottom)) - 13px); display:block; width:116px; height:138px; pointer-events:auto; }
+  body.walking #app #walk-controls { display:none; }
+  body.walking #app .place-card { bottom:244px; }
+  #app:has(#panorama:not([hidden])) .campus-joystick,
+  #app:has(#campus-plan-overlay) .campus-joystick,
+  #app:has(.adventure-overlay) .campus-joystick,
+  #app:has(#about-dialog[open]) .campus-joystick { visibility:hidden; pointer-events:none; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+  body.walking #app .campus-joystick { bottom:calc(max(90px,env(safe-area-inset-bottom)) - 13px); }
+  body.walking #app .place-card { bottom:224px; max-height:calc(100dvh - 238px); }
+}
+@media(prefers-reduced-motion:reduce) { .campus-joystick-thumb { transition:none; } }
