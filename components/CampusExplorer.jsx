@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
+import { BUS_STOPS } from "../lib/bus-stops.js";
+import CampusPlan2D from "./CampusPlan2D";
 
 export default function CampusExplorer() {
   useEffect(() => {
@@ -84,20 +86,28 @@ export default function CampusExplorer() {
           </button>
         </div>
         <p className="panel-intro">
-          Wander around Parit Raja, or step into a real 360° view.
+          Explore six faculties, campus landmarks and the shuttle stops along the way.
         </p>
         <div className="places-heading">
           <h2>Explore the campus</h2>
-          <span id="visit-count">0 / 7</span>
+          <span id="visit-count">{`0 / ${12 + BUS_STOPS.length}`}</span>
         </div>
+        <div className="place-filters" role="group" aria-label="Filter campus places">
+          <button data-place-filter="all" aria-pressed="true">All</button>
+          <button data-place-filter="faculties" aria-pressed="false">Faculties</button>
+          <button data-place-filter="landmarks" aria-pressed="false">Landmarks</button>
+          <button data-place-filter="bus-stops" aria-pressed="false">Bus stops</button>
+        </div>
+        <input id="place-search" className="place-search" type="search" placeholder="Find a faculty or place…" aria-label="Find a faculty or place" />
         <nav id="places" aria-label="Choose a campus landmark"></nav>
+        <p id="places-empty" hidden>No matching places. Try another name.</p>
         <button className="tour-start" id="tour-start">
           <span>Take the campus tour</span>
           <span aria-hidden="true">↗</span>
         </button>
         <div className="panel-foot">
           <span className="status-dot"></span>
-          <span id="place-total">7 places. At your own pace.</span>
+          <span id="place-total">6 faculties · {BUS_STOPS.length} shuttle stops</span>
         </div>
       </aside>
       <div id="place-toast" role="status" aria-live="polite"></div>
@@ -263,6 +273,7 @@ export default function CampusExplorer() {
           <small>If the view doesn’t appear, choose “Open full view”.</small>
         </div>
       </section>
+      <CampusPlan2D busStops={BUS_STOPS} />
       <dialog id="about-dialog">
         <button
           id="close-about"

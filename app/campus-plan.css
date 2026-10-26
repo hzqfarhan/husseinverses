@@ -1,0 +1,162 @@
+.plan2d-open {
+  position: fixed;
+  top: 96px;
+  right: 30px;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 17px 11px 12px;
+  border: 1px solid #ffffffcc;
+  border-radius: 12px;
+  background: #fffdf7ed;
+  box-shadow: 0 5px 24px #243d4814;
+  color: #243f4b;
+  text-align: left;
+  font-weight: 700;
+  font-size: 13px;
+}
+.plan2d-open > span:first-child { display: grid; place-items: center; width: 30px; height: 34px; border-radius: 7px; background: #e8eee5; font-size: 25px; color: #406a65; }
+.plan2d-open small { display: block; margin-top: 2px; font-size: 10px; font-weight: 500; color: #75837f; }
+.plan2d-open:hover { background: #fffdf7; transform: translateY(-1px); }
+.plan2d-tree-toggle { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
+.plan2d-tree-toggle input { width: 12px; height: 12px; margin: 0; accent-color: #bd7895; }
+.plan2d-overlay {
+  position: fixed;
+  inset: 15px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid #ffffffb3;
+  border-radius: 19px;
+  box-shadow: 0 0 0 30px #1d3547a6, 0 24px 100px #132a4259;
+  background: #fffdf7;
+  color: #213f4c;
+  font-family: "DM Sans", Arial, sans-serif;
+}
+.plan2d-overlay button, .plan2d-overlay input { font: inherit; }
+.plan2d-overlay button { transition: background .15s, border-color .15s; }
+.plan2d-overlay button:focus-visible, .plan2d-overlay input:focus-visible, .plan2d-overlay canvas:focus-visible { outline: 3px solid #e3aa43; outline-offset: 2px; }
+.plan2d-header { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 26px 18px; border-bottom: 1px solid #e0e5dc; }
+.plan2d-eyebrow { display: block; font-size: 9px; letter-spacing: .14em; font-weight: 700; color: #738780; }
+.plan2d-heading h2 { margin: 5px 0 4px; font: 700 25px/1.2 "Manrope", Arial, sans-serif; letter-spacing: -.7px; }
+.plan2d-heading p { margin: 0; font-size: 12px; color: #778780; }
+.plan2d-head-actions { display: flex; gap: 17px; align-items: center; }
+.plan2d-export { display: flex; align-items: center; gap: 24px; border: 0; padding: 12px 17px; border-radius: 8px; background: #254956; color: #fffdf7; font-size: 12px !important; font-weight: 600 !important; white-space: nowrap; }
+.plan2d-export:hover { background: #326373; }
+.plan2d-close { display: grid; place-items: center; width: 34px; height: 34px; border: 0; border-radius: 7px; background: #f1f2eb; font-size: 24px !important; color: #5c746e; }
+.plan2d-close:hover { background: #e0e7de; }
+.plan2d-toolbar { position: relative; display: flex; flex-wrap: wrap; align-items: center; flex-shrink: 0; gap: 17px; min-height: 68px; padding: 12px 24px; border-bottom: 1px solid #dce3d9; background: #fafaf3; }
+.plan2d-tool-group { display: flex; align-items: center; gap: 4px; }
+.plan2d-tool-group button { display: flex; align-items: center; gap: 7px; padding: 8px 12px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: #70837a; font-size: 12px; }
+.plan2d-tool-group button > span { font-size: 20px; line-height: 20px; }
+.plan2d-tool-group button.active { border-color: #c8d7cb; background: #e7eee4; color: #2f5752; font-weight: 700; }
+.plan2d-tool-group button:hover { background: #edf1e8; }
+.plan2d-colors { display: flex; align-items: center; gap: 9px; padding: 0 18px; border-left: 1px solid #dee5da; border-right: 1px solid #dee5da; }
+.plan2d-colors button { display: block; width: 20px; height: 20px; border: 3px solid #fafaf3; border-radius: 50%; background: var(--mark-color); box-shadow: 0 0 0 1px transparent; }
+.plan2d-colors button.active { box-shadow: 0 0 0 1.8px var(--mark-color); }
+.plan2d-history { display: flex; align-items: center; gap: 7px; margin-left: auto; }
+.plan2d-history button { display: grid; place-items: center; min-width: 30px; height: 32px; border: 1px solid #e0e5db; border-radius: 6px; background: #fffdf7; color: #567267; font-size: 21px; }
+.plan2d-history button:last-child { margin-left: 5px; padding: 0 9px; font-size: 11px; }
+.plan2d-history button:hover { background: #eaf0e5; }
+.plan2d-note-input { display: flex; align-items: center; gap: 10px; flex: 1 0 100%; color: #5d766d; font-size: 11px; }
+.plan2d-note-input > span { font-weight: 700; }
+.plan2d-note-input input { min-width: 0; width: min(480px, 55%); padding: 9px 11px; border: 1px solid #c9d6c9; border-radius: 6px; background: #fffdf7; color: #254956; font-size: 12px; }
+.plan2d-note-input small { color: #819084; font-size: 11px; }
+.plan2d-clear-confirm { position: absolute; right: 24px; top: calc(100% - 2px); z-index: 4; display: flex; align-items: center; gap: 10px; padding: 13px; border: 1px solid #e3d9c4; border-radius: 9px; background: #fffdf7; box-shadow: 0 6px 25px #38524720; font-size: 11px; }
+.plan2d-clear-confirm button { border: 1px solid #d1dacd; border-radius: 5px; padding: 6px 8px; background: #f0f3ea; font-size: 10px; }
+.plan2d-clear-confirm button:first-of-type { border-color: #c87066; background: #fff0eb; color: #a34d43; }
+.plan2d-body { display: flex; flex: 1; min-height: 0; }
+.plan2d-map-area { position: relative; flex: 1; min-width: 0; overflow: hidden; background: #edf1e8; }
+.plan2d-map-area canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: crosshair; outline-offset: -4px !important; }
+.plan2d-map-area.tool-pan canvas { cursor: grab; }
+.plan2d-map-area.tool-pan canvas:active { cursor: grabbing; }
+.plan2d-map-area.tool-note canvas { cursor: text; }
+.plan2d-map-key { position: absolute; left: 18px; top: 16px; display: flex; align-items: center; gap: 13px; padding: 8px 11px; border: 1px solid #ffffffb3; border-radius: 6px; background: #fffdf7e6; pointer-events: none; font-size: 9px; color: #6c7c71; }
+.plan2d-map-key span { display: flex; align-items: center; gap: 5px; }
+.plan2d-map-key i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; }
+.plan2d-map-key .key-faculty { background: #a2bfa5; border: 1px solid #6f9373; }
+.plan2d-map-key .key-landmark { background: #e3bd73; border: 1px solid #a47c3c; }
+.plan2d-map-key .key-bus { border: 1.5px solid #2c7291; border-radius: 50%; background: #fffdf7; }
+.plan2d-map-controls { position: absolute; bottom: 18px; left: 18px; display: flex; gap: 1px; overflow: hidden; border: 1px solid #d3ded2; border-radius: 8px; box-shadow: 0 3px 12px #244a3210; }
+.plan2d-map-controls button { min-width: 36px; height: 35px; padding: 0 12px; border: 0; background: #fffdf7; color: #456858; font-size: 20px; }
+.plan2d-map-controls button:last-child { border-left: 1px solid #e0e7da; font-size: 11px; }
+.plan2d-map-controls button:hover { background: #e4ede0; }
+.plan2d-map-caption { position: absolute; bottom: 22px; right: 16px; padding: 5px 7px; border-radius: 5px; background: #edf1e8df; color: #81917f; pointer-events: none; font-size: 9px; }
+.plan2d-sidebar { width: 245px; display: flex; flex-direction: column; flex-shrink: 0; padding: 22px 17px 16px; border-left: 1px solid #dce4d7; background: #fffdf7; }
+.plan2d-list-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.plan2d-list-heading h3 { margin: 0; font: 700 14px "Manrope", Arial, sans-serif; letter-spacing: -.3px; }
+.plan2d-list-heading > span { display: grid; place-items: center; min-width: 23px; height: 23px; border-radius: 6px; background: #eaf0e3; color: #78926d; font-size: 10px; font-weight: 700; }
+.plan2d-empty { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; flex: 1; padding: 0 6px 30px; }
+.plan2d-empty > span { display: grid; place-items: center; width: 41px; height: 41px; margin-bottom: 17px; border-radius: 11px; background: #f2eee2; color: #b6a47c; font-size: 26px; }
+.plan2d-empty strong { color: #4a6658; font-size: 12px; }
+.plan2d-empty p { margin: 7px 0; max-width: 170px; color: #899585; font-size: 11px; line-height: 1.65; }
+.plan2d-mark-list { flex: 1; min-height: 0; overflow-y: auto; margin: 0 -8px 18px; padding: 0 4px; list-style: none; }
+.plan2d-mark-list li { display: flex; align-items: center; margin-bottom: 6px; border: 1px solid transparent; border-radius: 7px; background: #f6f7ef; }
+.plan2d-mark-list li.selected { border-color: #c6d8c4; background: #edf3e8; }
+.plan2d-focus-mark { display: flex; flex: 1; min-width: 0; align-items: flex-start; gap: 9px; padding: 10px 8px; border: 0; background: transparent; text-align: left; }
+.plan2d-focus-mark > i { flex-shrink: 0; width: 8px; height: 8px; margin-top: 4px; border-radius: 2px; }
+.plan2d-focus-mark > span { min-width: 0; }
+.plan2d-focus-mark b { display: block; overflow-wrap: anywhere; color: #4b6659; font-size: 11px; font-weight: 600; line-height: 1.45; }
+.plan2d-focus-mark small { display: block; margin-top: 3px; color: #8c9887; font-size: 9px; }
+.plan2d-delete-mark { display: grid; place-items: center; flex-shrink: 0; width: 25px; height: 28px; margin-right: 3px; border: 0; border-radius: 4px; background: transparent; color: #84917e; font-size: 17px !important; }
+.plan2d-delete-mark:hover { background: #eddfd2; color: #9a675c; }
+.plan2d-sidebar-foot { margin-top: auto; padding-top: 13px; border-top: 1px solid #e4e9dd; }
+.plan2d-sidebar-foot p { margin: 0 0 12px; color: #8b9787; font-size: 10px; line-height: 1.6; }
+.plan2d-sidebar-foot button { display: flex; align-items: center; justify-content: space-between; width: 100%; border: 1px solid #dae2d4; border-radius: 6px; padding: 9px; background: #fafbf3; color: #647e68; font-size: 10px; }
+.plan2d-sidebar-foot button:hover { background: #eaf1e3; }
+.plan2d-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-shrink: 0; min-height: 36px; padding: 8px 23px; border-top: 1px solid #dce4d7; background: #fafbf4; color: #7a8e7c; font-size: 9px; }
+.plan2d-footer > span:first-child { display: flex; align-items: center; gap: 6px; }
+.plan2d-download { display: inline-block; margin-left: 5px; padding: 3px 7px; border: 1px solid #bbd2bb; border-radius: 4px; background: #eaf2e2; color: #365f42; text-decoration: none; white-space: nowrap; font-weight: 700; }
+.plan2d-download:hover { background: #dcebd1; }
+.plan2d-footer i { width: 5px; height: 5px; border-radius: 50%; background: #8fad6c; flex-shrink: 0; }
+.plan2d-footer kbd { padding: 1px 3px; border: 1px solid #dbe2d5; border-radius: 3px; font: inherit; }
+@media (min-width: 761px) { .compass { top: 177px; } }
+@media (max-width: 1000px) {
+  .plan2d-sidebar { width: 205px; padding: 18px 13px 13px; }
+  .plan2d-toolbar { gap: 10px; padding: 10px 16px; }
+  .plan2d-tool-group button { padding: 8px 9px; }
+  .plan2d-colors { gap: 8px; padding: 0 12px; }
+  .plan2d-map-caption { max-width: 140px; text-align: right; line-height: 1.6; bottom: 16px; }
+}
+@media (max-width: 760px) {
+  .plan2d-open { top: 153px; left: 16px; right: auto; padding: 8px 12px 8px 9px; gap: 7px; }
+  .plan2d-open > span:first-child { width: 27px; height: 29px; font-size: 22px; }
+  .plan2d-overlay { inset: 7px; border-radius: 13px; }
+  .plan2d-header { padding: 16px 15px 13px; gap: 10px; }
+  .plan2d-eyebrow { font-size: 7px; letter-spacing: .1em; }
+  .plan2d-heading h2 { margin-top: 5px; font-size: 18px; letter-spacing: -.5px; }
+  .plan2d-heading p { display: none; }
+  .plan2d-head-actions { gap: 8px; }
+  .plan2d-export { gap: 7px; padding: 10px; font-size: 10px !important; }
+  .plan2d-close { width: 28px; height: 30px; }
+  .plan2d-toolbar { gap: 12px 7px; padding: 10px 12px; }
+  .plan2d-tool-group { gap: 2px; }
+  .plan2d-tool-group button { display: flex; flex-direction: column; gap: 4px; min-width: 43px; padding: 6px 8px; font-size: 9px; }
+  .plan2d-tool-group button > span { font-size: 20px; }
+  .plan2d-colors { margin-left: auto; gap: 7px; padding: 0 0 0 10px; border-right: 0; }
+  .plan2d-colors button { width: 17px; height: 17px; border-width: 2px; }
+  .plan2d-history { justify-content: flex-end; flex: 1 0 100%; margin-top: -2px; }
+  .plan2d-history button { height: 28px; min-width: 29px; font-size: 19px; }
+  .plan2d-history::before { content: "Drag to mark · Move to pan"; margin-right: auto; color: #8c9b87; font-size: 9px; }
+  .plan2d-sidebar { display: none; }
+  .plan2d-note-input { flex-wrap: wrap; gap: 6px; }
+  .plan2d-note-input input { flex: 1; width: auto; }
+  .plan2d-note-input small { flex: 1 0 100%; padding-left: 32px; font-size: 10px; }
+  .plan2d-map-key { top: 11px; left: 11px; gap: 9px; padding: 7px 8px; font-size: 8px; }
+  .plan2d-map-controls { left: 11px; bottom: 12px; }
+  .plan2d-map-caption { right: 10px; bottom: 11px; font-size: 8px; }
+  .plan2d-footer { padding: 8px 12px; gap: 8px; font-size: 8px; }
+  .plan2d-footer > span:first-child { flex-wrap: wrap; }
+  .plan2d-footer > span:last-child { white-space: nowrap; }
+  .plan2d-clear-confirm { right: 10px; gap: 7px; padding: 10px; font-size: 10px; }
+}
+@media (max-width: 400px) {
+  .plan2d-tool-group button { min-width: 37px; padding: 5px 6px; }
+  .plan2d-colors { gap: 5px; padding-left: 8px; }
+  .plan2d-heading h2 { font-size: 16px; }
+  .plan2d-export { padding: 9px 7px; }
+}
+@media (prefers-reduced-motion: reduce) { .plan2d-open, .plan2d-overlay button { transition: none; } }

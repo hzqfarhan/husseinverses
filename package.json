@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "node scripts/serve.mjs",
     "check": "node --check lib/campus.js",
-    "test": "node --test lib/navigation.test.mjs"
+    "test": "node --test lib/*.test.mjs"
   },
   "engines": {
     "node": ">=20.9.0"

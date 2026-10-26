@@ -22,8 +22,11 @@ The Next.js App Router project uses `output: 'export'`. Its production output is
 
 ## Included
 
-- Seven destinations: PTTA library, Dewan Sultan Ibrahim, Masjid Sultan Ibrahim, FSKTM (Faculty of Computer Science and Information Technology), swimming centre, stadium, and an aerial campus view.
-- Rebuilt FSKTM with an eight-level central tower, four-level wings, the angled left SMC@FSKTM wing, and the straight right wing.
+- Twenty-nine selectable places: twelve campus destinations and seventeen shuttle stops. The campus destinations include six Parit Raja faculties: FSKTM, FPTP, FPTV, FKAAB, FKEE and the FKMP laboratory complex. Filter by faculty, landmark or bus stop, or search by name.
+- FSKTM corrected to **seven total tower floors** (ground + six) and **three total floors per lower wing** (ground + two), preserving the angled left SMC@FSKTM wing and straight right wing.
+- A 2D campus canvas for highlighting fixes: freehand highlights, boxes, circles, notes, undo/redo, browser-local saving and PNG/editable-mark export.
+- Original world-space grass and asphalt textures, animated aqua ponds with shallow-water gradients and sandy margins, plus sparse grass tufts.
+- Seventeen UTHM Katsana stop markers, reference-inspired leaf-roof shelters, open waiting areas and a direct live-tracker link.
 - Campus building outlines, positions and orientations traced from the official map, with major roads and ponds. An overhead camera control makes footprints easy to inspect.
 - Orbiting campus view, smooth camera transitions, zoom, daylight/evening lighting, and selectable landmark markers.
 - Third-person walking using WASD, arrow keys or on-screen controls. Shift runs; V changes view. Drag turns the camera.
@@ -34,15 +37,15 @@ The Next.js App Router project uses `output: 'export'`. Its production output is
 
 ## Accuracy and current limits
 
-This is an **independent prototype, not an official UTHM service or a surveyed digital twin**. The layout uses 190 footprint components traced from the January 2023 official campus map; these are map components, not a verified count of separate buildings. Detailed landmark models replace their corresponding traced shapes. Other buildings retain the map's outlines and angles but use estimated heights and simplified facades. Major roads and ponds follow the schematic map; landscaping is illustrative. The map is not a current survey and has no verified north bearing. The compass indicates camera rotation. Building interiors and concealed elevations are not reconstructed.
+This is an **independent prototype, not an official UTHM service or a surveyed digital twin**. The layout uses 190 footprint components traced from the January 2023 official campus map; these are map components, not a verified count of separate buildings. Detailed landmark models replace their corresponding traced shapes. All 178 remaining footprint components retain their map outlines, angles and courtyards, with modeled window frames, reveals, mullions, sunshades, floor bands, entrances, parapets, and roof services. Faculty blocks use distinct architectural treatments. Heights and concealed elevations are estimated. Major roads and ponds follow the schematic map; landscaping is illustrative. The map is not a current survey and has no verified north bearing. The compass indicates camera rotation. Building interiors and concealed elevations are not reconstructed.
 
 The real panorama media remain hosted by Momento360 and are credited to UTHM's published tour. The top-level library panorama was visually verified. Embedded panoramas did not render inside the development app's in-app browser, so every tour stop includes **Open full view** as a direct alternative and a delayed-loading message. External media availability depends on that provider and the visitor's browser. This implementation does not download or rehost the panorama files.
 
-The seven-destination scene, FSKTM selection, overhead view, walking arrival and production build were checked. Every arrival position is validated against collision bounds during initialization. Run `npm test` for checks covering rotated wings, concave footprints and open courtyards. Phone-specific styles are included, but the available browser's viewport override did not take effect, so phone rendering needs a real-device check.
+The 29-place scene, FSKTM floor counts, faculty selection, overhead view, walking arrivals and production build were checked. Every arrival position is validated against collision bounds during initialization. Run `npm test` for checks covering rotated wings, concave footprints and open courtyards. Phone-specific styles are included, but the available browser's viewport override did not take effect, so phone rendering needs a real-device check.
 
 ## FSKTM reference and refinement
 
-The original model in `lib/models/fsktm.js` follows the supplied `public/assets/directory` floor plans and `public/assets/reffsktm` photographs. The directory shows Ground through Seventh in the central tower and Ground through Third in both wings. The right wing continues straight across the tower junction; the left wing turns forward by approximately 35 degrees. That angle is estimated from the photographed plans, not a measured survey. These newer references take precedence over the campus map's simplified block P outline.
+The original model in `lib/models/fsktm.js` follows the supplied `public/assets/reffsktm/directory` floor plans and `public/assets/reffsktm` photographs. The owner has corrected the earlier interpretation of the directory: the tower has seven total floors and each lower wing has three total floors, including ground. That correction takes precedence over the earlier directory reading. The right wing continues straight across the tower junction; the left wing turns forward by approximately 35 degrees. That angle is estimated from the photographed plans, not a measured survey. These newer references take precedence over the campus map's simplified block P outline.
 
 The two wings have different facades. The left uses long corridor window bands, piers, a tall louvred panel and blue SMC@FSKTM lettering with a red @. The right uses grouped window bays, contrasting vertical panels and rooftop solar arrays. The tower includes rounded front corners, green window columns, projecting shades and a recessed entrance. Roof overhangs, parking and a shaded forecourt complete the exterior. Dimensions, concealed connections, rear elevations and landscaping remain approximate.
 
@@ -50,16 +53,54 @@ The supplied photographs were also compared with the UTHM-authored front photogr
 
 FSKTM's photographic tour reference is UTHM's second campus aerial panorama, `350dd70abf1a47ccbe278d5ad0787a5d`. Its FSKTM hotspot was visually confirmed during reference review. The button is labeled **View aerial · 360°** because this is an aerial campus reference, not a dedicated ground-level FSKTM panorama.
 
+## Detailed campus upgrade
+
+The detailed models are connected to the live explorer: PTTA has an open annular courtyard, the mosque has smooth domes and minaret balconies, DSI has modeled glazed elevations and roof details, and the sports buildings have structural, seating and equipment detail. FSKTM has 205,526 triangles with rounded edges, recessed glazing, roof ribs, gutters, solar arrays and entrance detail.
+
+Repeated mapped-campus details use instanced geometry; landmark details are merged by material. The complete campus, including the shared shelter model instances, renders roughly 4.35 million triangles while keeping the number of render objects bounded. Faculty identities J (FPTP), K (FPTV), M (FKAAB), P (FSKTM), QA/QB (FKEE), G1 (FKEE labs) and G2 (FKMP labs) were read from the official map legend. These are exterior interpretations rather than fully surveyed replicas. The five added faculty stops use the shared campus aerial panorama, clearly labeled as an aerial view.
+
+Run `npm test` for geometry, FSKTM floor-count, courtyard and arrival-boundary checks. `npm run build` validates the static export.
+
+## Terrain, transit and 2D corrections
+
+Grass, road aggregate, cracks, pond gradients and animated ripple streaks are original procedural artwork. [Pendekar's public screenshots](https://pendekar.io/) informed the fine-grain grass and aqua-water direction; no game code, imagery or textures were copied. All surface detail follows world coordinates, including rotated road instances, and all custom textures are disposed with the scene.
+
+[UTHM Katsana](https://uthm.katsana.com/) supplies the 17 unique main-campus checkpoint names, GPS coordinates and route memberships. Repeated visits to a checkpoint share one shelter. The schematic is rotated and nonuniform, so road placements are approximations matched by landmark identity and route order rather than asserted surveyed positions. Off-campus Kampus Bandar, KK Perwira, KK Taman Universiti and the separate Pagoh campus are excluded. The current source has no stop named FSKTM; none was invented.
+
+The shared shelter is an original interpretation of the silver leaf-shaped roof, banded columns, benches and ramp rails visible in [Google Maps Street View at Bus Stop UTHM Parit Raja](https://www.google.com/maps/place/Bus+Stop+UTHM+Parit+Raja/@1.8531064,103.0882499,17z/) (July 2025 imagery). This is a design reference, not confirmation that every checkpoint has an identical shelter. Waiting areas remain walkable, with collisions limited to columns and furniture. The live tracking button opens Katsana; no simulated live bus positions are shown.
+
+Use **2D map · Mark fixes** to annotate the plan, add text notes and export a PNG to share in a future correction request. Marks are saved on this browser and device. The map is the same schematic coordinate system as the 3D scene; the FSKTM plan uses its corrected wing geometry. Exported editable marks preserve those coordinates.
+
+## Placement and landscape refinement
+
+The placement audit checks projected vertices of the actual detailed geometry against neighboring footprints and water. It identified and corrected the oversized mosque and misaligned swimming centre; the hall, library and stadium retain their checked placement. The mosque crescent was fitted separately from its main hall, and four generic trace fragments already represented by the detailed mosque/FSKTM were linked to their landmark models to prevent duplicate buildings. FSKTM retains its approved seven-floor tower and three-floor wings.
+
+Planting follows deliberate avenue rows and small groves rather than random scatter. The complete canopy clears building roofs, courtyards, entrance corridors, sports grounds, ponds, bus shelters and road furniture. The current composition contains 238 trees, including 166 pink flowering trees, 9,628 individual fallen petals and 192 gently drifting petals. These are design placements, not a surveyed tree inventory. Foliage and blossom albedo textures were generated as original project assets; the built-in generation prompts are saved in `public/assets/textures/prompts.json`.
+
+All ten pond outlines use the same rounded, gently undulating rings for the water, banks, lawn cutouts, collision boundaries and 2D plan. They retain more than 99% of the original traced area while removing hard corners. Curbs stop at junctions and entrances; lamps avoid shelters, buildings, water and each other. The 2D plan now draws the detailed landmark envelopes and the same planted tree coordinates, with a Trees toggle.
+
+The production export and geometry/placement checks pass. The latest landscape revision was checked using the generated placement plan and automated model tests; interactive browser control was disabled during the final visual pass.
+
 ## Project structure
 
 - `app/`: Next.js App Router page, metadata and global styles.
+- `components/CampusPlan2D.jsx`: campus annotation canvas and local mark saving.
+- `lib/site-layout.js`: shared detailed-model footprints and clearances.
+- `lib/planting.js`: deliberate tree placement, pink blossoms and petal effects.
+- `lib/water-boundaries.js`: rounded, gently wavy pond outlines.
+- `lib/road-layout.js`: junction-aware curbs and lamp clearances.
+- `lib/environment-materials.js`: original terrain and animated pond shaders.
+- `lib/bus-stops.js`: sourced Katsana markers and approximate road placements.
+- `lib/models/bus-stop.js` and `lib/campus-transit.js`: shared shelter geometry and campus placement.
 - `components/CampusExplorer.jsx`: React interface and client-only scene lifecycle.
 - `lib/campus.js`: Three.js scene, landmark data, controls, tour state and navigation tools.
+- `lib/faculty-data.js`: map-linked faculty identities, architecture palettes and navigation positions.
+- `lib/models/landmarks.js`: detailed library, mosque, hall, pool and stadium geometry.
 - `lib/models/fsktm.js`: original FSKTM exterior reconstructed from the supplied plans and photographs.
 - `lib/campus-layout.js`: source-map coordinates, footprint traces, roads, ponds and landmark placements.
 - `lib/mapped-campus.js`: rendering of the traced campus surroundings.
 - `lib/navigation.js`: rotated and polygonal collision boundaries, including courtyards.
-- `public/assets/directory/` and `public/assets/reffsktm/`: user-supplied reference images, preserved unchanged.
+- `public/assets/reffsktm/` and its `directory/` subfolder: user-supplied reference images, preserved unchanged.
 - `public/icon.svg`: project icon.
 - `scripts/serve.mjs`: local server for the built static export.
 - `.openai/hosting.json`: optional private Sites deployment identity; no credentials.

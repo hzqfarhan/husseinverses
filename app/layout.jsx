@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./campus-plan.css";
 
 export const metadata = {
   title: "Husseinverse · Explore UTHM Parit Raja",

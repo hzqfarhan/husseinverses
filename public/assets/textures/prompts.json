@@ -1,0 +1,14 @@
+{
+  "tool": "Built-in image generation",
+  "reference": "User-supplied visual benchmark, used for material richness only",
+  "assets": [
+    {
+      "file": "campus-foliage.png",
+      "prompt": "Use case: stylized-concept. Asset type: seamless tileable game foliage albedo texture for original campus tree canopies. Reference image is only the intended richness and scale of material detail; do not reproduce any scene, character, layout or asset. Generate a square flat orthographic texture, edge-to-edge dense overlapping small tropical oval leaves with visible central veins, irregular clusters, lush mid-green and deep emerald shadows, a few lime leaf tips. Hand-painted 3D adventure game material, sophisticated readable medium-scale leaves, no outlines, no photographic depth of field. Soft neutral even diffuse illumination baked very lightly into leaf overlaps only, no directional cast shadows. Seamlessly repeatable on all edges, no borders, no trunk, no branches, no empty gaps, no text, no watermark. Designed to wrap irregular three-dimensional tree crowns and remain readable at campus walking distance. Output only the flat texture."
+    },
+    {
+      "file": "campus-blossoms.png",
+      "prompt": "Use case: stylized-concept. Asset type: seamless game tree canopy albedo texture, original artwork for pink-flowering campus trees. Generate a square flat orthographic edge-to-edge tileable surface: dense loose clusters of small five-petal blossom flowers in sakura pink, light blush pink, warm rose and creamy petal tips, little warm yellow centers, interspersed with a few small soft green oval leaves and fine dark twigs. Rich medium-scale crisp painted detail for a three-dimensional stylized adventure game canopy, irregular small overlapping flowers rather than huge individual blooms. Even diffuse neutral lighting, only very gentle depth in overlaps, no scene lighting, no camera perspective. Seamless repeat edges, completely filled image, no borders, no empty background, no text, no watermark. This is a material texture to wrap an irregular 3D crown, not a picture of a tree or a finished scene. Preserve lively natural textures and sunny Malaysian campus feel."
+    }
+  ]
+}
